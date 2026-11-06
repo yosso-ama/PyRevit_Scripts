@@ -1,0 +1,10 @@
+name: Write Assembly Qty
+tooltip: >
+  For assemblies matching a name prefix, binds and writes Quantity=1
+  to each assembly so schedules can calculate Count x Unit Volume.
+title: |-
+  Write
+  Qty
+author: Michael
+min_revit_ver: 2020
+max_revit_ver: 2026

@@ -1,0 +1,23 @@
+# separate git repos kept in this folder
+mcp-server-for-revit-python/
+pyStructure.extension/
+
+# Python
+__pycache__/
+*.pyc
+
+# script backups (center_of_rigidity.py.001, *.old, ...)
+*.py.0[0-9][0-9]
+*.old
+*.bak
+
+# Revit backups and temp files
+*.[0-9][0-9][0-9][0-9].rvt
+*.[0-9][0-9][0-9][0-9].rfa
+*.rvt.bak
+
+# editors / OS
+.vscode/
+.idea/
+Thumbs.db
+desktop.ini

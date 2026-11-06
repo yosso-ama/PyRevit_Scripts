@@ -1,0 +1,11 @@
+name: Circular Wall Opening
+tooltip: >
+  SELECT A WALL FIRST, then click this button.
+  Enter offset from wall start end, hole center elevation, and diameter.
+  Cuts a circular void through the full wall thickness.
+title: |-
+  Circular
+  Opening
+author: Michael
+min_revit_ver: 2020
+max_revit_ver: 2026

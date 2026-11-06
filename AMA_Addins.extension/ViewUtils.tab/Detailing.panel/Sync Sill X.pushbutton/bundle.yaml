@@ -1,0 +1,6 @@
+title: Sync Sill X's
+tooltip: >-
+  Adds, moves or removes the 2x8 sill plate X (Nominal Cut Lumber-Section : 2x8 FLAT)
+  in every section that cuts a FOUNDATION WALLS (NEW) wall. Opening a section does
+  the same for that view automatically.
+context: doc-project

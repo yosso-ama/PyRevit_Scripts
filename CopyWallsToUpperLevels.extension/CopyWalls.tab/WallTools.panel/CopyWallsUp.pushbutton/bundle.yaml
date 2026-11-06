@@ -1,0 +1,10 @@
+name: Copy Walls Up
+tooltip: >
+  Creates Floor Plan views for all levels, then copies all walls
+  from a selected source level to every level above it.
+title: |-
+  Copy Walls
+  Up
+author: Michael
+min_revit_ver: 2020
+max_revit_ver: 2026

@@ -1,0 +1,10 @@
+name: Add Volume Parameter
+tooltip: >
+  Adds the "Total Wall Volume" shared parameter to the Assembly Instance
+  category from the AMA Civil shared parameter file.
+title: |-
+  Add Volume
+  Param
+author: Michael
+min_revit_ver: 2020
+max_revit_ver: 2026

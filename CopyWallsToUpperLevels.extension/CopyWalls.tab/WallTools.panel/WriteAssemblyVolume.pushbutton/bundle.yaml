@@ -1,0 +1,10 @@
+name: Write Assembly Volume
+tooltip: >
+  Finds all Assembly Instances, sums wall member volumes,
+  and writes the total to the "Total Wall Volume" shared parameter.
+title: |-
+  Write
+  Volume
+author: Michael
+min_revit_ver: 2020
+max_revit_ver: 2026

@@ -1,0 +1,11 @@
+name: Circular Part Opening
+tooltip: >
+  SELECT A PART FIRST, then click this button.
+  Enter offset from part start end, hole center elevation, and diameter.
+  Cuts a circular void through the full part thickness.
+title: |-
+  Circular
+  Part Opening
+author: Michael
+min_revit_ver: 2020
+max_revit_ver: 2026

@@ -1,0 +1,6 @@
+title: Hide Sweeps In Plans
+tooltip: >-
+  Turns on the "Walls - Sweeps" view filter (Enable Filter checked, Visibility off)
+  in every plan view and plan template that has it applied, so wall sweeps such as
+  the 2x8 sill do not draw in plans. Sections and elevations are not touched.
+context: doc-project

@@ -1,0 +1,10 @@
+name: Delete Void Instances
+tooltip: >
+  Finds and deletes all placed CircularVoid family instances.
+  Family types remain loaded in the project.
+title: |-
+  Delete
+  Void Instances
+author: Michael
+min_revit_ver: 2020
+max_revit_ver: 2026

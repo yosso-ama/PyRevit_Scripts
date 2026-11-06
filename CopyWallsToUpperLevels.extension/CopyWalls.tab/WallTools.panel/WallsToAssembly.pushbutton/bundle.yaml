@@ -1,0 +1,11 @@
+name: Walls to Assembly
+tooltip: >
+  Select start and end levels, enter a base name.
+  Creates one Assembly per level containing all structural walls,
+  named "<base name> - <level name>".
+title: |-
+  Walls to
+  Assembly
+author: Michael
+min_revit_ver: 2020
+max_revit_ver: 2026

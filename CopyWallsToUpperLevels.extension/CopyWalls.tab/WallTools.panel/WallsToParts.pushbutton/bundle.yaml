@@ -1,0 +1,10 @@
+name: Walls to Parts
+tooltip: >
+  Select a start and end level. Converts all structural walls on each
+  level (inclusive) to Parts, skipping any already divided.
+title: |-
+  Walls
+  to Parts
+author: Michael
+min_revit_ver: 2020
+max_revit_ver: 2026
