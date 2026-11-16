@@ -1,0 +1,8 @@
+title: Toggle Sweeps In View
+tooltip: >-
+  Shows or hides wall sweeps (such as the 2x8 sill) in the active view through
+  the "Walls - Sweeps" view filter. When the view template controls filters,
+  showing gives this view a "- SWEEPS ON" copy of its template (other views are
+  untouched) and hiding puts the original template back. Hide Sweeps In Plans
+  leaves views shown this way alone.
+context: doc-project
