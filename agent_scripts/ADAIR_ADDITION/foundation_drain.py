@@ -264,3 +264,63 @@ def run(doc, curves, view, names=None, high_inverts=None, high_ends=None, outlet
     return {'types_created': made, 'pipe_type': [pt.Id.Value, PIPE_TYPE], 'system': [st.Id.Value, SYSTEM],
             'line_pattern': doc.GetElement(st.LinePatternId).Name if st.LinePatternId.Value > 0 else None,
             'slope_in_per_ft': round(MIN_SLOPE * 12, 4), 'runs': runs}
+
+
+# Runs as built in ADAIR_ADDITION.rvt (2026-11-18), from the detail lines in FFE SHELTER.
+# Elevations: 'rel' = project elevation from FFE (EXISTING) = 0, 'abs' = survey elevation.
+SAVED_RUNS = [
+    {'name': 'LEFT',
+     'path': [(-59.052, -4.186), (-62.135, -4.186), (-62.135, 0.0), (-81.469, 0.0), (-81.469, -22.417)],
+     'high': ('rel', -(7 + 10 / 12.0)), 'low': None,
+     'outlet': (-81.469 - 18.5, -22.417)},
+    {'name': 'RIGHT',
+     'path': [(-26.839, -5.833), (-10.839, -5.833), (-10.839, -20.92)],
+     'high': ('abs', 981.0), 'low': ('abs', 979.5),
+     'outlet': (-10.839, -28.333)},
+]
+CHECK_FOOTINGS = 'NEW WALL FOOTING'
+
+
+def existing_drains(doc):
+    return [p for p in DB.FilteredElementCollector(doc).OfClass(Plumbing.Pipe)
+            if (p.get_Parameter(DB.BuiltInParameter.ALL_MODEL_INSTANCE_COMMENTS).AsString() or '').startswith(COMMENT)]
+
+
+def footing_check(doc, runs=SAVED_RUNS, reach=4.0):
+    """Fraction of path sample points with a CHECK_FOOTINGS footing within reach
+    (plan), so a file whose footings sit elsewhere is caught before laying pipe."""
+    boxes = []
+    for e in DB.FilteredElementCollector(doc).OfCategory(DB.BuiltInCategory.OST_StructuralFoundation).WhereElementIsNotElementType():
+        t = doc.GetElement(e.GetTypeId())
+        if t is not None and tname(t) == CHECK_FOOTINGS:
+            bb = e.get_BoundingBox(None)
+            if bb:
+                boxes.append(bb)
+    hit = n = 0
+    for r in runs:
+        for a, b in zip(r['path'], r['path'][1:]):
+            for k in range(5):
+                x = a[0] + (b[0] - a[0]) * k / 4.0
+                y = a[1] + (b[1] - a[1]) * k / 4.0
+                n += 1
+                if any(bb.Min.X - reach <= x <= bb.Max.X + reach and bb.Min.Y - reach <= y <= bb.Max.Y + reach for bb in boxes):
+                    hit += 1
+    return hit, n, len(boxes)
+
+
+def lay_saved(doc, runs=SAVED_RUNS):
+    """Lay the saved runs into doc (call inside a transaction).  Elevations given
+    as 'abs' are survey elevations; they are converted with this file's FFE datum."""
+    ffe = project_z(doc, 0.0)
+    view = doc.ActiveView
+    out = []
+    for r in runs:
+        curves = [DB.Line.CreateBound(DB.XYZ(a[0], a[1], 0), DB.XYZ(b[0], b[1], 0)) for a, b in zip(r['path'], r['path'][1:])]
+        rel = lambda v: v[1] if v[0] == 'rel' else v[1] - ffe
+        res = run(doc, curves, view, names=[r['name']],
+                  high_inverts={r['name']: rel(r['high'])},
+                  low_inverts={r['name']: rel(r['low'])} if r['low'] else None,
+                  high_ends={r['name']: r['path'][0]},
+                  outlets={r['name']: r['outlet']} if r['outlet'] else None)
+        out.append(res)
+    return out
