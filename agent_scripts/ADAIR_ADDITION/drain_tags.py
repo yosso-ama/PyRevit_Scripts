@@ -12,6 +12,7 @@ DATUM = 'FFE (EXISTING)'
 PLAN = 'FOUNDATION PLAN (PROPOSED)'
 HIGH_TAG, LOW_TAG = 'DRAIN INV HIGH', 'DRAIN INV LOW'
 OFFSET = 3.0
+TAG_LINE_WEIGHT = 4
 
 
 def a(x):
@@ -68,7 +69,21 @@ def targets(pipes):
     return out
 
 
+def set_tag_line_weight(doc, view):
+    """Pipe Tags line weight override (which the tag leaders use) on the plan's view
+    template, or on the plan itself when it has none.  Returns True if it changed."""
+    owner = doc.GetElement(view.ViewTemplateId) if view.ViewTemplateId.Value > 0 else view
+    cid = DB.ElementId(DB.BuiltInCategory.OST_PipeTags)
+    ogs = owner.GetCategoryOverrides(cid)
+    if ogs.ProjectionLineWeight == TAG_LINE_WEIGHT:
+        return False
+    ogs.SetProjectionLineWeight(TAG_LINE_WEIGHT)
+    owner.SetCategoryOverrides(cid, ogs)
+    return True
+
+
 def place(doc, view, high_sym, low_sym, pipes):
+    set_tag_line_weight(doc, view)
     tags = []
     for p, e, kind, label in targets(pipes):
         sym = high_sym if kind == 'HIGH' else low_sym

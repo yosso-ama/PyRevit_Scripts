@@ -17,6 +17,7 @@ PIPE_TYPE_SRC, PIPE_TYPE = 'PVC - DWV', '4" PERFORATED PVC'
 SYSTEM_SRC, SYSTEM = 'Other', 'FOUNDATION DRAIN'
 ABBREV = 'PD'
 LINE_PATTERNS = ('Dash', 'Hidden', 'Dash 1/8"', 'Dashed')
+SYSTEM_LINE_WEIGHT = 3
 LEVEL = 'TOF SHOP'
 PHASE = 'Adair Addition'
 DIAMETER = 4.0 / 12
@@ -56,6 +57,9 @@ def setup_types(doc):
                 st.LinePatternId = pats[n].Id
                 break
         made.append(SYSTEM)
+    if st.LineWeight != SYSTEM_LINE_WEIGHT:
+        st.LineWeight = SYSTEM_LINE_WEIGHT
+        made.append('%s line weight %d' % (SYSTEM, SYSTEM_LINE_WEIGHT))
     return pt, st, made
 
 
