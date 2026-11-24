@@ -1,0 +1,13 @@
+title: Import Word Doc
+tooltip: >-
+  Imports Word (.docx) files into drafting views as editable text notes, one view per
+  file named after it. One dialog sets everything: the files, which pages of each
+  (with a preview of every page; Word, if installed, lays out a temporary copy so the
+  page numbers match), the text type and the column size. Keeps bold, italic,
+  underline, bullets, numbered lists and typed numbers with their hanging indents;
+  tables are redrawn as a grid of lines with a text note per cell, using Word's column
+  widths, alignment and merged cells; pictures are skipped. Re-importing a file
+  replaces the text and lines in its view.
+context: doc-project
+engine:
+  clean: true

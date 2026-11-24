@@ -1,0 +1,8 @@
+tooltip: |-
+  Resets the active plan view's crop region to fit the model: the extents of every visible model element in the view, plus 10 ft on each side. Turns the crop region on and makes it visible.
+
+  - Works in floor, ceiling, structural and area plans (not view templates).
+  - If the view uses a Scope Box, set its Scope Box parameter to <None> first.
+  - Annotation (tags, text, dimensions) and hidden elements don't count.
+
+  Tip: use Reset Points first if you also need to see the coordinate points.

@@ -1,0 +1,6 @@
+tooltip: |-
+  Builds a new safe room model by running safe_room.py (D:\repos\claude-skills\revit-safe-room). It starts a project from SAFE_ROOM.rte in that folder and saves it there as "Safe Room.rvt" (with a date and time added if that file already exists), then opens it.
+
+  The model: 8" CMU walls, a sloped concrete roof slab with a ridge and overhang, a 6" slab on grade with a perimeter turndown, and a continuous footing. Global parameters (SR_Length, SR_Width, SR_EaveHeight, SR_RoofOverhang, SR_TurndownDepth, SR_TurndownWidth, SR_FootingWidth, SR_FootingThickness) drive the sizes.
+
+  Works with no model open.

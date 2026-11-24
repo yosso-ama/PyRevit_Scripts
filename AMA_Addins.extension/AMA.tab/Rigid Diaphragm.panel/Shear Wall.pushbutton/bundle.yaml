@@ -1,0 +1,17 @@
+tooltip: |-
+  Center of rigidity, center of mass and eccentricity of a rigid diaphragm, using the masonry relative-rigidity method.
+
+  Before you run, in the plan view:
+  - Trace each shear wall or pier with one straight detail line on the SHEAR WALL line style. The tool finds these lines itself.
+  - Draw a closed loop of detail lines around the floor plate (the diaphragm) for the center of mass.
+
+  When you run it, it asks for:
+  1. The folder for the CSV results (the last folder is remembered).
+  2. A check of how many SHEAR WALL lines it found.
+  3. Wall height (ft) and thickness (in), used for every wall.
+  4. The diaphragm outline lines (Cancel uses the walls' mass instead).
+  5. An origin point and +X direction for reporting the results.
+
+  Results: a report in the pyRevit output window with the center of rigidity, center of mass, eccentricity (ex, ey) and ASCE 7 accidental eccentricity, plus cor_walls.csv and cor_summary.csv in the chosen folder.
+
+  Assumes solid walls without openings and cantilever (fixed-free) piers.

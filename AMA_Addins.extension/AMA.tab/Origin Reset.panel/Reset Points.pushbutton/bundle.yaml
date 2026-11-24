@@ -1,0 +1,4 @@
+tooltip: |-
+  Expands the active view's crop region so it takes in the Project Base Point, Survey Point and Internal Origin, with 10 ft of padding around them. The crop only grows (it never cuts off what's already shown), and it's turned on and made visible.
+
+  Use it to find the coordinate points when they sit outside the crop region. Run Reset Crop afterwards to tighten the crop back to the model.
